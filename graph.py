@@ -1,4 +1,4 @@
-from topobase import host,hosts,topo,cluster,device,link
+from topobase import Host,Hosts,Topo,Cluster,Device,Link
 
 class Point:
     def __init__(self,id,port) -> None:
@@ -15,14 +15,14 @@ class Point:
         return hash((self.deviceId,self.devicePort))
 
 class Graph:
-    def __init__(self,topo:topo) -> None:
+    def __init__(self, topo:Topo) -> None:
         self.weightMatrix:dict={}
         self.pointList:list[Point]=[]
         self.defaultWeight=1
         self.maxWeight=999
         self.readTopo(topo)
     
-    def readTopo(self,topo:topo):# construct graph from topo
+    def readTopo(self, topo:Topo):# construct graph from topo
         for h in topo.hosts.hostList:# add endpoint of hosts' link
             p=Point(h.devId,h.devPort)
             self.pointList.append(p)
