@@ -1,5 +1,5 @@
 import sys
-
+from sdnAppInterface import Ui_MainWindow
 from interactor import TopoInteractor
 from topobase import Host,Hosts,Cluster,Device,Link,Topo
 import onosapi,json
@@ -76,5 +76,8 @@ def main():
 if __name__ == '__main__':
     import matplotlib as mpl
     import matplotlib.pyplot as plt
+
+
+    window=Ui_MainWindow()
 
     main()
