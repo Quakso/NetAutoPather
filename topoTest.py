@@ -1,56 +1,40 @@
 from mininet.topo import Topo
 
+
 class MyTopo(Topo):
     def __init__(self):
         super().__init__(self)
-        host1=self.addHost('h1',ip="10.0.0.1")
-        host2=self.addHost('h2',ip="10.0.0.2")
-        host3=self.addHost('h3',ip="10.0.0.3")
-        
-        switch1=self.addSwitch('s1')
-        switch2=self.addSwitch('s2')
-        switch3=self.addSwitch('s3')
-        switch4=self.addSwitch('s4')
-        switch5=self.addSwitch('s5')
-        switch6=self.addSwitch('s6')
-        switch7=self.addSwitch('s7')
-        switch8=self.addSwitch('s8')
-        switch9=self.addSwitch('s9')
-        switch10=self.addSwitch('s10')
-        switch11=self.addSwitch('s11')
-        switch12=self.addSwitch('s12')
-        switch13=self.addSwitch('s13')
-        switch14=self.addSwitch('s14')
-        switch15=self.addSwitch('s15')
-        switch16=self.addSwitch('s16')
-        switch17=self.addSwitch('s17')
-        switch18=self.addSwitch('s18')
+        host1 = self.addHost('h1', ip="10.0.0.1")
+        host2 = self.addHost('h2', ip="10.0.0.2")
+        host3 = self.addHost('h3', ip="10.0.0.3")
+        host4 = self.addHost('h4', ip="10.0.0.4")
 
-        
-        self.addLink(switch18,switch17)
-        self.addLink(switch15,switch17)
-        self.addLink(switch16,switch17)
-        self.addLink(switch14,switch15)
-        self.addLink(switch12,switch13)
-        self.addLink(switch5,switch13)
-        self.addLink(switch2,switch5)
-        self.addLink(switch6,switch5)
-        self.addLink(switch3,switch2)
-        self.addLink(switch1,switch2)
-        self.addLink(switch2,switch3)
-        self.addLink(switch4,switch3)
-        self.addLink(switch6,switch4)
-        self.addLink(switch6,switch7)
-        self.addLink(switch8,switch6)
-        self.addLink(switch8,switch12)
-        self.addLink(switch12,switch16)
-        self.addLink(switch9,switch8)
-        self.addLink(switch7,switch10)
-        self.addLink(switch9,switch10)
-        self.addLink(switch11,switch9)
-	
-        self.addLink(host3,switch18)
-        self.addLink(host2,switch11)
-        self.addLink(host1,switch1)
+        switch1 = self.addSwitch('s1')
+        switch2 = self.addSwitch('s2')
+        switch3 = self.addSwitch('s3')
+        switch4 = self.addSwitch('s4')
+        switch5 = self.addSwitch('s5')
+        switch6 = self.addSwitch('s6')
 
-topos={'mytopo':(lambda:MyTopo())}
+        self.addLink(switch1, switch2)
+        self.addLink(switch1, switch5)
+        self.addLink(switch1, switch4)
+
+        self.addLink(switch2, switch3)
+        self.addLink(switch2, switch5)
+        self.addLink(switch2, switch6)
+
+        self.addLink(switch3, switch5)
+        self.addLink(switch3, switch6)
+
+        self.addLink(switch4, switch5)
+
+        self.addLink(switch5, switch6)
+
+        self.addLink(switch1, host1)
+        self.addLink(switch4, host3)
+        self.addLink(switch3, host2)
+        self.addLink(switch3, host2)
+        self.addLink(switch6, host4)
+
+topos = {'mytopo': (lambda: MyTopo())}

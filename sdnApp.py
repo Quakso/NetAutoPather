@@ -1,14 +1,15 @@
 import sys
 from sdnAppInterface import Ui_MainWindow
 from interactor import TopoInteractor
-from topobase import Host,Hosts,Cluster,Device,Link,Topo
-import onosapi,json
+from topobase import Host, Hosts, Cluster, Device, Link, Topo
+import onosapi, json
 from matplotlib.backends.qt_compat import QtWidgets
 
-ip='192.168.10.145'
+ip = '192.168.10.145'
+
 
 class ApplicationWindow(QtWidgets.QMainWindow):
-    def __init__(self,interctorCanvas):
+    def __init__(self, interctorCanvas):
         super().__init__()
         self._main = QtWidgets.QWidget()
         self.setCentralWidget(self._main)
@@ -73,11 +74,7 @@ def main():
     app.raise_()
     qapp.exec()
 
+
 if __name__ == '__main__':
     import matplotlib as mpl
-    import matplotlib.pyplot as plt
-
-
-    window=Ui_MainWindow()
-
     main()

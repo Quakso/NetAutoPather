@@ -146,6 +146,9 @@ class Hosts:
                 dev.hostList[i].pos['a'] = theta
             angles.clear()
 
+    def clear(self):
+        self.hostList.clear()
+
 
 class Topo:
     def __init__(self, clusters: list[Cluster], hosts: Hosts):

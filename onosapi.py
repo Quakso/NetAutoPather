@@ -91,6 +91,7 @@ def post_flow(controller_ip, appId, priority, targetDeviceId, outputPort, inputP
     return resp.status_code, resp.text
 
 
+# 删除指定appId的所有流表
 def del_flows_by_appId(controller_ip, appId):
     headers = {
         'Accept': 'application/json'
@@ -99,7 +100,9 @@ def del_flows_by_appId(controller_ip, appId):
     resp = requests.delete(url=get_device_url, headers=headers, auth=auth)
     return resp.status_code, resp.text
 
-def post_flow_drop(controller_ip,appId,targetDeviceId,priority):
+
+# 指定targetDeviceId下发drop流表
+def post_flow_drop(controller_ip, appId, targetDeviceId, priority):
     headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -122,11 +125,59 @@ def post_flow_drop(controller_ip,appId,targetDeviceId,priority):
         },
         "treatment": {
             "instructions": [
-                # 没有instruction视作drop？
+                # 没有instruction视作drop
             ]
         }
     }
     post_url = 'http://{}:8181/onos/v1/flows/{}'.format(controller_ip, targetDeviceId)
     resp = requests.post(url=post_url, params=params,
                          headers=headers, auth=auth, data=json.dumps(data))
+    return resp.status_code, resp.text
+
+
+# 获取链路编号，来确定链路是否改变
+def get_change_id(controller_ip):
+    headers = {
+        'Accept': 'application/json'
+    }
+    get_url = 'http://{}:8181/onos/device-and-host/quakso/checkLinkChange'.format(controller_ip)
+    resp = requests.get(get_url, headers=headers, auth=auth)
+    return resp.status_code, resp.text
+
+
+# 开始链路时延监听
+def start_delay_detect(controller_ip):
+    headers = {
+        'Accept': 'application/json'
+    }
+    get_url = 'http://{}:8181/onos/device-and-host/quakso/delay/start'.format(controller_ip)
+    resp = requests.get(get_url, headers=headers, auth=auth)
+    return resp.status_code, resp.text
+
+
+# 停止链路时延监听
+def stop_delay_detect(controller_ip):
+    headers = {
+        'Accept': 'application/json'
+    }
+    get_url = 'http://{}:8181/onos/device-and-host/quakso/delay/stop'.format(controller_ip)
+    resp = requests.get(get_url, headers=headers, auth=auth)
+    return resp.status_code, resp.text
+
+
+# 获取链路时延的Map
+def get_delay_map(controller_ip):
+    headers = {
+        'Accept': 'application/json'
+    }
+    get_url = 'http://{}:8181/onos/device-and-host/quakso/delay/getMap'.format(controller_ip)
+    resp = requests.get(get_url, headers=headers, auth=auth)
+    return resp.status_code, resp.text
+
+def get_udp_service_msg(controller_ip):
+    headers = {
+        'Accept': 'application/json'
+    }
+    get_url = 'http://{}:8181/onos/device-and-host/quakso/udpMsg'.format(controller_ip)
+    resp = requests.get(get_url, headers=headers, auth=auth)
     return resp.status_code, resp.text
