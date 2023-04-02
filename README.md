@@ -1,3 +1,5 @@
+## 简介
+SDN课程作品，主要基于PyQt和matplotlib实现前端
 ## 如何实现可交互拖动的拓扑UI
 
 因为在之前的实验中主要通过Python实现下发流表，Python中常用的画图库**matplotlib**，考虑使用matplotlib画出拓扑。
