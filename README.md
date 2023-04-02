@@ -2,9 +2,9 @@
 
 因为在之前的实验中主要通过Python实现下发流表，Python中常用的画图库**matplotlib**，考虑使用matplotlib画出拓扑。
 
-考虑到了交互性，于是查阅matplotlib官方文档寻找实现交互的拓扑可能性(**详见参考资料第二项**)。之后又了解到可以在Qt中加入matplotlib画出的图（**详见参考资料第三项**），于是决定使用PyQt实现简单的交互界面。具体实现可见**作品实现与测试展示**章节的**`TopoInteractor`**中相关描述。
+考虑到了交互性，于是查阅matplotlib官方文档寻找实现交互的拓扑可能性(**详见参考资料第二项**)。之后又了解到可以在Qt中加入matplotlib画出的图（**详见参考资料第三项**），于是决定使用PyQt实现简单的交互界面。具体实现可见**作品实现与测试展示**章节的`TopoInteractor`中相关描述。
 
-交互拓扑的接口设计可见**`Cluster`**、**`Hosts`**中相关描述。
+交互拓扑的接口设计可见`Cluster`、`Hosts`中相关描述。
 
 # 作品实现与测试展示
 
@@ -67,7 +67,7 @@
 Host的构造方法（ __init__ ）需传入dict，其与onos提供的api中返回的json结果的结构对应，如下所示。
 
 ```JSON
-{'id': '', 'ipAddresses': [''], 'locations': [{'elementId': '', 'port': ''}]}
+{"id": "", "ipAddresses": [""], "locations": [{"elementId": "", "port": ""}]}
 ```
 
 Host类所含方法及其解释如下表。
@@ -170,7 +170,7 @@ Cluster类所含成员方法及其解释如下表。
 
 有公式：
 
-$$$$\begin{cases}r=evenR\\ \theta=theta \end{cases} $$$$
+$$\begin{cases}r=evenR\\ \theta=theta \end{cases} $$
 
 此时，交换机有`pos`值为`{'r':evenR,'a':theta}`，其中`theta`为交换机被分配到的极角。例如，上图交换机的极角列表为`[0,np.pi/3,2*np.pi/3,np.pi,4*np.pi/3,5*np.pi/3]`
 
@@ -219,7 +219,7 @@ setPosRelateToDev解析：
 
 $$\begin{cases} r_{host}=\sqrt{evenR_{host}^2+r_{dev}^2-2*evenR_{host}*r_{dev}*\cos(\pi+\theta_{dev}-theta)}\\ \theta_{host}=\arcsin(\frac {evenR_{host}*\sin(\pi+\theta_{dev}-theta)} {r_{dev}})+\theta_{dev} \end{cases} $$
 
-*其中**`r_dev`*指的是主机所连交换机的极径，*`θ_dev`*指的是主机所连交换机的极角，*`evenR_host`*指的是设置的主机围绕交换机的圆的半径，*`theta`*指的是该主机被分配到的极角（以交换机为中心）。例如上图中右上角有主机极角列表`[0,2*np.pi/3,4*np.pi/3]`。
+其中`r_dev`指的是主机所连交换机的极径，`θ_dev`指的是主机所连交换机的极角，`evenR_host`指的是设置的主机围绕交换机的圆的半径，`theta`指的是该主机被分配到的极角（以交换机为中心）。例如上图中右上角有主机极角列表`[0,2*np.pi/3,4*np.pi/3]`。
 
 #### Topo
 
